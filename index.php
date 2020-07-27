@@ -13,6 +13,11 @@
 
 			<!-- Blog Entries Column -->
 			<div class="col-md-8">
+				
+				<h1 class="page-header">
+					Page Heading
+					<small>Secondary Text</small>
+				</h1>
 
 			<?php
 			 // select all post from database. 
@@ -33,14 +38,8 @@
 				$post_content = $row['post_content'];
 
 				?>
-
-				<!-- Then display the fetch row form the database in the browser.  -->
 				
-				<h1 class="page-header">
-					Page Heading
-					<small>Secondary Text</small>
-				</h1>
-
+				<!-- Then display the fetch row form the database in the browser.  -->
 				<!-- First Blog Post -->
 				<h2>
 					<a href="#"><?php echo $post_title ?></a>
@@ -64,7 +63,6 @@
 			
 			<?php } ?>
 
-				
 			</div>
 
 			<!-- Blog Sidebar Widgets Column -->
@@ -72,5 +70,4 @@
 
 		</div><!-- /.row -->
 
-		<hr>
 <?php include "includes/footer.php" ?>

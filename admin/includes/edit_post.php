@@ -136,7 +136,7 @@ if(isset($_POST['update_post'])){
     
     </select>
     
-  </div>
+  </div> <!-- form-group -->
 
   <div class="form-group">
     <label for="title">Post Author</label>
