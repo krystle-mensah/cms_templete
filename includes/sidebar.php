@@ -42,9 +42,10 @@
             while($row = mysqli_fetch_array($select_categories_sidebar)) {
               // Then assign the array to a variable
               $cat_title = $row['cat_title'];
+              $cat_id = $row['cat_id'];
 
               // then display the fetch row form the database in the browser. 
-              echo "<li><a href='/cms/'>{$cat_title}</a></li>";
+              echo "<li><a href='category.php?category=$cat_id '>{$cat_title}</a></li>";
             }
 
             ?>

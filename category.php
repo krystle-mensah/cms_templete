@@ -13,6 +13,19 @@
 
 			<!-- Blog Entries Column -->
 			<div class="col-md-8">
+
+
+      <?php
+      
+      // listening for an event on the sidebar
+      if(isset($_GET['category'])){
+        
+        // Each value when clicked
+	      $post_category_id = $_GET['category'];
+
+      }
+
+      ?>
 				
 				<h1 class="page-header">
 					Page Heading
@@ -20,8 +33,8 @@
 				</h1>
 
 			<?php
-			 // select all post from database. 
-			$query = "SELECT * FROM posts";
+			 // select all post WHERE column is equal to the var
+			$query = "SELECT * FROM posts WHERE post_category_id = $post_category_id ";
 
 			// function to perform a query against the database and i pass in the connection a query.  
 			$select_all_posts_query = mysqli_query($connection,$query);
