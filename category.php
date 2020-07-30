@@ -49,7 +49,9 @@
 				$post_date = $row['post_date'];
 				// reference form the database
 				$post_image = $row['post_image'];
-				$post_content = $row['post_content'];
+				
+				// return content from 0 string to 400 string includeding spaces
+				$post_content = substr($row['post_content'],0,400);
 
 				?>
 				
