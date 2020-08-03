@@ -35,7 +35,7 @@
         </ul> <!-- posts_dropdown --> 
       </li>
       <li class="active"><a href="./categories.php"><i class="fa fa-fw fa-file"></i> Categories</a></li>
-      <li><a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> Comments</a></li>
+      <li><a href="comments.php"><i class="fa fa-fw fa-dashboard"></i> Comments</a></li>
       <li>
         <a href="javascript:;" data-toggle="collapse" data-target="#users_dropdown"><i class="fa fa-fw fa-arrows-v"></i> Users <i class="fa fa-fw fa-caret-down"></i></a>
         <ul id="users_dropdown" class="collapse">

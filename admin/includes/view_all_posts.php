@@ -56,8 +56,7 @@
         $cat_title = $row['cat_title'];
         // display the cat title 
         echo "<td>{$cat_title}</td>";
-      }
-      
+      } 
     echo "<td>$post_status</td>";
     echo "<td><img width='100' src='../images/$post_image' alt='image'></td>";
     echo "<td>$post_tags</td>";
@@ -65,7 +64,7 @@
     echo "<td>$post_date</td>";
     //passing the page and the post id. 
     echo "<td><a href='posts.php?source=edit_post&p_id={$post_id}'>Edit</a></td>";
-    //send it to the url
+    //im sending information to this link for information. send it to the url
     echo "<td><a href='posts.php?delete={$post_id}'>Delete</a></td>";
     echo "</tr>";
   }

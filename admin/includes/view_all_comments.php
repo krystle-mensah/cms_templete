@@ -11,6 +11,7 @@
       <th>Date</th>
       <th>Approve</th>
       <th>Unapprove</th>
+      <th>Edit</th>        
       <th>Delete</th>            
     <!-- </tr> -->
   </thead>
@@ -56,17 +57,19 @@
       //   // display the cat title 
       //   echo "<td>{$cat_title}</td>";
       // }
-      
+
+    echo "<td>$comment_email</td>";  
     echo "<td>$comment_status</td>";
+    echo "<td>some title</td>";
     echo "<td>$comment_date</td>";
     //passing the page and the post id. 
-    echo "<td><a href='posts.php?source=edit_post&p_id={$post_id}'>Approve</a></td>";
+    echo "<td><a href='posts.php?source=edit_post&p_id='>Approve</a></td>";
     //send it to the url
-    echo "<td><a href='posts.php?delete={$post_id}'>Unapprove</a></td>";
+    echo "<td><a href='posts.php?delete='>Unapprove</a></td>";
     //passing the page and the post id. 
-    echo "<td><a href='posts.php?source=edit_post&p_id={$post_id}'>Edit</a></td>";
+    echo "<td><a href='posts.php?source=edit_post&p_id='>Edit</a></td>";
     //send it to the url
-    echo "<td><a href='posts.php?delete={$post_id}'>Delete</a></td>";
+    echo "<td><a href='posts.php?delete='>Delete</a></td>";
     echo "</tr>";
   }
 

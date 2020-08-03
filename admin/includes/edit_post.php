@@ -18,7 +18,7 @@ $select_posts_by_id = mysqli_query($connection,$query);
 //condition is true fetch the row representing the array from ($variable)
 while($row = mysqli_fetch_array($select_posts_by_id)) {
 
-  // values we bring back and assign to variable
+  // ARRAY values we bring back and assign to variable
   $post_id = $row['post_id'];
   $post_author = $row['post_author'];
   $post_title = $row['post_title'];
