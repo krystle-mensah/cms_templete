@@ -84,7 +84,19 @@ if(isset($_GET['p_id'])){
 
 					//echo $_POST['comment_author'];
 
-					// then catch the data from the form. 
+					// and get this from the url
+					$the_post_id = $_GET['p_id'];
+
+					// then catch the data from the form in $var.
+					$comment_author = $_POST['comment_author'];
+					$comment_email = $_POST['comment_email'];
+					$comment_content = $_POST['comment_content'];
+
+					// insert into comment table and the colums of the table. comment_status will be static.  
+					$query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_content, comment_status,comment_date)";
+					
+					// values when sending in from our form
+					$query .= "VALUES ($the_post_id ,'{$comment_author}', '{$comment_email}', '{$comment_content }', 'unapproved',now())";
 				}
 
 				?>
