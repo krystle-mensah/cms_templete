@@ -97,6 +97,17 @@ if(isset($_GET['p_id'])){
 					
 					// values when sending in from our form
 					$query .= "VALUES ($the_post_id ,'{$comment_author}', '{$comment_email}', '{$comment_content }', 'unapproved',now())";
+
+					//send the query in
+					$create_comment_query = mysqli_query($connection, $query);
+
+					// if this is not a query 
+					if(!$create_comment_query){
+
+						//send me a message with why it faild
+						die('Query FAILED' . mysqli_error($connection));
+					}
+
 				}
 
 				?>
