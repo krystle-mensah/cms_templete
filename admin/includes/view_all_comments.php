@@ -11,9 +11,8 @@
       <th>Date</th>
       <th>Approve</th>
       <th>Unapprove</th>
-      <th>Edit</th>        
       <th>Delete</th>            
-    <!-- </tr> -->
+    </tr>
   </thead>
   <tbody>
 
@@ -60,17 +59,34 @@
 
     echo "<td>$comment_email</td>";  
     echo "<td>$comment_status</td>";
-    echo "<td>some title</td>";
+
+    // select all where post id is equal to the comment_post_id
+    $query = "SELECT * FROM posts WHERE post_id = $comment_post_id ";
+    // then we send it in
+    $select_post_id_query = mysqli_query($connection, $query);
+
+    //while $var is true condition it to fetch a result $row as an associative array:
+    while($row = mysqli_fetch_assoc($select_post_id_query)) {
+      
+      $post_id = $row['post_id'];
+      
+      $post_title = $row['post_title'];
+
+      echo "<td><a href='../post.php?p_id=$post_id'>$post_title</a></td>";
+
+    }
+
+    // echo "<td>some title</td>";
     echo "<td>$comment_date</td>";
     //passing the page and the post id. 
     echo "<td><a href='posts.php?source=edit_post&p_id='>Approve</a></td>";
     //send it to the url
     echo "<td><a href='posts.php?delete='>Unapprove</a></td>";
-    //passing the page and the post id. 
-    echo "<td><a href='posts.php?source=edit_post&p_id='>Edit</a></td>";
-    //send it to the url
-    echo "<td><a href='posts.php?delete='>Delete</a></td>";
+   
+    //send it to the url to be catch
+    echo "<td><a href='comments.php?delete=$comment_id'>Delete</a></td>";
     echo "</tr>";
+
   }
 
   ?>
@@ -80,18 +96,21 @@
 
 <?php
 
-// // if this is set
-// if(isset($_GET['delete'])){
+//  if the delete=$comment_id link is pressed
+if(isset($_GET['delete'])){
 
-//   // then convert this into the $the_post_id variable
-//   $the_post_id = $_GET['delete']; 
+//  then convert that into the $the_comment_id.
+$the_comment_id = $_GET['delete']; 
 
-//   // delete
-//   $query = "DELETE FROM posts WHERE post_id = {$the_post_id} ";
+// then query the database for {$the_comment_id}
+$query = "DELETE FROM comments WHERE comment_id = {$the_comment_id} ";
 
-//   // function performs a query against a database to send in. 
-//   $delete_query = mysqli_query($connection,$query);
+// function performs a query against a database to send in. 
+$delete_query = mysqli_query($connection,$query);
 
-// }
+// then refresh the page everytime it is submited
+header("Location: comments.php");
+
+}
 
 ?>

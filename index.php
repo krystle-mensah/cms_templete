@@ -20,18 +20,23 @@
 				</h1>
 
 			<?php
-			 // select all post from database. 
+			 // select all the post table colums from database. 
 			$query = "SELECT * FROM posts";
+			//echo $query; //SELECT * FROM posts
 
 			// function to perform a query against the database and i pass in the connection a query.  
 			$select_all_posts_query = mysqli_query($connection,$query);
-
+			
+			//echo 	$select_all_posts_query; //Object of class mysqli_result could not be converted to string
+			
 			// while the condition is true fetch the row representing the array from $select_all_posts_query 
 			while($row = mysqli_fetch_array($select_all_posts_query)) {
+				
+				//echo $row; // Notice: Array to string conversion
 
 				// Then assign the row array to a variable
-				$post_id = $row['post_id'];
-				$post_title = $row['post_title'];
+				$post_id = $row['post_id']; // 2
+				$post_title = $row['post_title']; //
 				$post_author = $row['post_author'];
 				$post_date = $row['post_date'];
 				// reference form the database
