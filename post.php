@@ -18,7 +18,7 @@
 
 <?php 
 
-// listening for an event on the index
+// Detact event on the index
 if(isset($_GET['p_id'])){
 	// Each value when clicked
 	$the_post_id = $_GET['p_id'];
@@ -32,7 +32,7 @@ if(isset($_GET['p_id'])){
 				</h1>
 
 			<?php
-			 // select all post from database where the id is equal to the event var. 
+			 // select all posts from database where the id is equal to the event var. 
 			$query = "SELECT * FROM posts WHERE post_id = $the_post_id ";
 
 			// function to perform a query against the database and i pass in the connection a query.  
@@ -137,48 +137,50 @@ if(isset($_GET['p_id'])){
 
 				<!-- Posted Comments -->
 
-				<!-- Comment -->
-				<div class="media">
-					<a class="pull-left" href="#">
-						<img class="media-object" src="http://placehold.it/64x64" alt="">
-					</a>
-					<div class="media-body">
-						<h4 class="media-heading">Start Bootstrap
-							<small>August 25, 2014 at 9:30 PM</small>
-						</h4>
-						Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-					</div>
-				</div>
+				<?php 
 
-				<!-- Comment -->
-				<div class="media">
-					<a class="pull-left" href="#">
-						<img class="media-object" src="http://placehold.it/64x64" alt="">
-					</a>
-					<div class="media-body">
-						<h4 class="media-heading">Start Bootstrap
-							<small>August 25, 2014 at 9:30 PM</small>
-						</h4>
-						Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-						<!-- Nested Comment -->
-						<div class="media">
-							<a class="pull-left" href="#">
-								<img class="media-object" src="http://placehold.it/64x64" alt="">
-							</a>
-							<div class="media-body">
-								<h4 class="media-heading">Nested Start Bootstrap
-									<small>August 25, 2014 at 9:30 PM</small>
-								</h4>
-								Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-							</div>
-						</div>
-						<!-- End Nested Comment -->
-					</div>
-				</div>
+// selsct all from comments where COL is equal to $the_post_id = $_GET['p_id']; 
+$query = "SELECT * FROM comments WHERE comment_post_id = {$the_post_id} ";
+
+//and comment_status equal approved
+$query .= "AND comment_status = 'approved' ";
+
+// order by the newest comment first
+$query .= "ORDER BY comment_id DESC ";
+
+// sending query in
+$select_comment_query = mysqli_query($connection, $query);
+
+// if not a query 
+if(!$select_comment_query) {
+		// kill script and terminte with a message
+		die('Query Failed' . mysqli_error($connection));
+}
+
+// while $var is true condition it to fetch a result $row as an associative array:
+while ($row = mysqli_fetch_array($select_comment_query)) {
+// catch the row and hold in $var.
+$comment_date   = $row['comment_date']; 
+$comment_content = $row['comment_content'];
+$comment_author = $row['comment_author'];
+		
+				?>
+
+<!-- Comment -->
+	<div class="media">
+		<a class="pull-left" href="#">
+			<img class="media-object" src="http://placehold.it/64x64" alt="">
+		</a>
+		<div class="media-body">
+			<h4 class="media-heading"><?php echo $comment_author; ?>
+				<small><?php echo $comment_date; ?></small>
+			</h4>
+			<?php echo $comment_content; ?>
+		</div>
+	</div>
 
 
-
-
+<?php }?>
 
 
 			</div>

@@ -79,10 +79,9 @@
     // echo "<td>some title</td>";
     echo "<td>$comment_date</td>";
     //passing the page and the post id. 
-    echo "<td><a href='posts.php?source=edit_post&p_id='>Approve</a></td>";
+    echo "<td><a href='comments.php?approve=$comment_id'>Approve</a></td>";
     //send it to the url
-    echo "<td><a href='posts.php?delete='>Unapprove</a></td>";
-   
+    echo "<td><a href='comments.php?unapprove=$comment_id'>Unapprove</a></td>";
     //send it to the url to be catch
     echo "<td><a href='comments.php?delete=$comment_id'>Delete</a></td>";
     echo "</tr>";
@@ -95,6 +94,39 @@
 </table><!-- table table-bordered table-hover -->
 
 <?php
+
+//  if the unapprove=$comment_id link is pressed
+if(isset($_GET['approve'])){
+
+  //  then convert that into the $var.
+  $the_comment_id = $_GET['approve']; 
+  
+  // then query the database for {$the_comment_id}
+  $query = "UPDATE comments SET comment_status = 'approved' WHERE comment_id = $the_comment_id ";
+  
+  // function performs a query against a database to send in. 
+  $approve_query = mysqli_query($connection,$query);
+  
+  // then refresh the page everytime it is submited
+  header("Location: comments.php");
+}
+
+//  if the unapprove=$comment_id link is pressed
+if(isset($_GET['unapprove'])){
+
+  //  CATCH $comment_id and convert that into the $var.
+  $the_comment_id = $_GET['unapprove']; 
+  
+  // then  the database for {$the_comment_id}
+  $query = "UPDATE comments SET comment_status = 'unapproved' WHERE comment_id = $the_comment_id ";
+  
+  // function performs a query against a database to send in. 
+  $unapprove_query = mysqli_query($connection,$query);
+  
+  // then refresh the page everytime it is submited
+  header("Location: comments.php");
+  
+}
 
 //  if the delete=$comment_id link is pressed
 if(isset($_GET['delete'])){
