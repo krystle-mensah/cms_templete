@@ -20,11 +20,11 @@
 				</h1>
 
 			<?php
-			 // select all the post table colums from database. 
+			 // select all the post table database. 
 			$query = "SELECT * FROM posts";
 			//echo $query; //SELECT * FROM posts
 
-			// function to perform a query against the database and i pass in the connection a query.  
+			// $var hold = function to perform a query against the database and i pass in the connection a query.  
 			$select_all_posts_query = mysqli_query($connection,$query);
 			
 			//echo 	$select_all_posts_query; //Object of class mysqli_result could not be converted to string

@@ -108,6 +108,11 @@ if(isset($_GET['p_id'])){
 						die('Query FAILED' . mysqli_error($connection));
 					}
 
+					// update table and set field equal to field plus 1 where field is equal to the post where the comment was made.
+					$query = "UPDATE posts SET post_comment_count = post_comment_count + 1 WHERE post_id = $the_post_id ";
+					// send query
+					$update_comment_count = mysqli_query($connection, $query);
+
 				}
 
 				?>

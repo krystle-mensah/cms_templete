@@ -25,7 +25,8 @@ if(isset($_POST['create_post'])){
   $post_tags         = $_POST['post_tags'];
   $post_content      = $_POST['post_content'];
   $post_date         = date('d-m-y');
-  $post_comment_count = 4;
+  // here when we create a post we are hard coding the value
+  //$post_comment_count = 4;
 
   // function to move files to new place. temp place the images folder 
   move_uploaded_file($post_image_temp, "../images/$post_image" );
@@ -33,9 +34,9 @@ if(isset($_POST['create_post'])){
   // query to insert to database
   $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date,post_image,post_content,post_tags, post_comment_count,post_status) ";
 
-  // values we are inserting from the from
-  $query .= "VALUES({$post_category_id},'{$post_title}','{$post_author}',now(),'{$post_image}','{$post_content}','{$post_tags}','{$post_comment_count}', '{$post_status}') "; 
-
+  // values we are inserting from the from. we are not getting the hard code from the $post_comment_count = 4; here any more
+  $query .= "VALUES({$post_category_id},'{$post_title}','{$post_author}',now(),'{$post_image}','{$post_content}','{$post_tags}','{$post_status}') "; 
+  
   // then we send the query in
   $create_post_query = mysqli_query($connection, $query); 
 
