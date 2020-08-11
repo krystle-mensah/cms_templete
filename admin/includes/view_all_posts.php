@@ -11,7 +11,8 @@
       <th>Tags</th>
       <th>Comments</th>
       <th>Date</th>      
-    <!-- </tr> -->
+      <th>Edit</th>      
+      <th>Delete</th>      
   </thead>
   <tbody>
 
@@ -87,6 +88,9 @@ if(isset($_GET['delete'])){
 
   // function performs a query against a database to send in. 
   $delete_query = mysqli_query($connection,$query);
+  
+  // after we delete a post the page will refresh
+  header("Location: posts.php");
 
 }
 

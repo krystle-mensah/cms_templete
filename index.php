@@ -44,6 +44,16 @@
 				
 				// return content from 0 string to 400 string includeding spaces
 				$post_content = substr($row['post_content'],0,400);
+				$post_status = $row['post_status'];
+				
+				//there is a probelm with capital letters on published
+
+				// if $var is not published 
+				if($post_status !==  'published') {	
+					
+					echo "<h1 class='text-center'> NO POST SORRY </h1>"; 	
+				
+				} else {
 
 				?>
 				
@@ -70,7 +80,7 @@
 
 				<hr>
 			
-			<?php } ?>
+			<?php }  } ?>
 
 			</div>
 
