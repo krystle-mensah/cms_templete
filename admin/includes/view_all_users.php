@@ -8,7 +8,6 @@
       <th>Lastname</th>
       <th>Email</th>
       <th>Role</th>
-      <th>Date</th> 
     </tr>
   </thead>
   <tbody>
@@ -36,9 +35,9 @@
     
     //display 
     echo "<tr>";    
-    echo "<td>$comment_id</td>";
-    echo "<td>$comment_author</td>";
-    echo "<td>$comment_content</td>";
+    echo "<td>$user_id</td>";
+    echo "<td>$user_name</td>";
+    echo "<td>$user_firstname</td>";
       
       // // select ALL from the table where [column name] variable is equal to this [column name] variable.
       // $request_to = "SELECT * FROM categories WHERE cat_id = {$post_category_id} ";
@@ -54,34 +53,33 @@
       //   // display the cat title 
       //   echo "<td>{$cat_title}</td>";
       // }
-
-    echo "<td>$comment_email</td>";  
-    echo "<td>$comment_status</td>";
+    
+    echo "<td>$user_lastname</td>"; 
+    echo "<td>$user_email</td>";  
+    echo "<td>$user_role</td>";
 
     // select all where post id is equal to the comment_post_id
-    $query = "SELECT * FROM posts WHERE post_id = $comment_post_id ";
+    //$query = "SELECT * FROM posts WHERE post_id = $comment_post_id ";
     // then we send it in
-    $select_post_id_query = mysqli_query($connection, $query);
+    //$select_post_id_query = mysqli_query($connection, $query);
 
     //while $var is true condition it to fetch a result $row as an associative array:
-    while($row = mysqli_fetch_assoc($select_post_id_query)) {
+    // while($row = mysqli_fetch_assoc($select_post_id_query)) {
       
-      $post_id = $row['post_id'];
+    //   $post_id = $row['post_id'];
       
-      $post_title = $row['post_title'];
+    //   $post_title = $row['post_title'];
 
-      echo "<td><a href='../post.php?p_id=$post_id'>$post_title</a></td>";
+    //   echo "<td><a href='../post.php?p_id=$post_id'>$post_title</a></td>";
 
-    }
+    // }
 
-    // echo "<td>some title</td>";
-    echo "<td>$comment_date</td>";
     //passing the page and the post id. 
-    echo "<td><a href='comments.php?approve=$comment_id'>Approve</a></td>";
+    echo "<td><a href='comments.php?approve='>Approve</a></td>";
     //send it to the url
-    echo "<td><a href='comments.php?unapprove=$comment_id'>Unapprove</a></td>";
+    echo "<td><a href='comments.php?unapprove='>Unapprove</a></td>";
     //send it to the url to be catch
-    echo "<td><a href='comments.php?delete=$comment_id'>Delete</a></td>";
+    echo "<td><a href='comments.php?delete='>Delete</a></td>";
     echo "</tr>";
 
   }

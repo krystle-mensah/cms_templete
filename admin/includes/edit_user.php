@@ -101,40 +101,34 @@ if(isset($_POST['update_post'])){
   </div>
 
   <div class="form-group">
-    <label for="categories">Categories</label>
-    <select name="post_category" id="">
+   
+   <select name="user_role" id="">
 
-    <?php
+   <?php
 
-        // hold all from database table
-        $query = "SELECT * FROM categories ";
-        // HOLD and send in query and connection
-        $select_categories = mysqli_query($connection,$query);
-        // confirm variable
-        confirmQuery($select_categories);
+       // query for all in table
+       $query = "SELECT * FROM users";
 
-        while($row = mysqli_fetch_assoc($select_categories )) {
-        $cat_id = $row['cat_id'];
-        $cat_title = $row['cat_title'];
+       // HOLD and send in query and connection funtion
+       $select_users = mysqli_query($connection,$query);
+       // confirm variable
+       confirmQuery($select_users);
+// while the $var is true condition it to fetch a result $row as an associative array:
 
+       while($row = mysqli_fetch_assoc($select_users)) {
+       $user_id = $row['user_id'];
+       echo $user_role = $row['user_role'];
+     
+       echo "<option selected value='{$user_id}'>{$user_role}</option>";
 
-        if($cat_id == $post_category_id) {
+       }
 
-      
-        echo "<option selected value='{$cat_id}'>{$cat_title}</option>";
+   ?>
+   
+   </select>
+   
+ </div> <!-- form-group -->
 
-        } else {
-
-          echo "<option value='{$cat_id}'>{$cat_title}</option>";
-
-        }
-
-            
-        }
-
-    ?>
-    
-    </select>
     
   </div> <!-- form-group -->
 

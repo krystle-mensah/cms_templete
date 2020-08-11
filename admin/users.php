@@ -36,7 +36,7 @@
             // compare variable with each case.
             switch($source){
               // if source is equal to add post
-              case 'add_post';
+              case 'add_user';
 
               //then display this
               include "includes/add_user.php";
@@ -45,7 +45,7 @@
               break;
 
               // if source is equal to this page
-              case 'edit_post';
+              case 'edit_users';
 
               //then display this
               include "includes/edit_user.php";
