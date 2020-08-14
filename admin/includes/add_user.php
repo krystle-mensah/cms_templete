@@ -12,30 +12,26 @@ if(isset($_POST['create_user'])){
   // create a test
   //echo $_POST['title'];
 
-  // assign all values from form to variables
+  // VALUES PICK UP
   $user_firstname        = $_POST['user_firstname'];
   $user_lastname  = $_POST['user_lastname'];
   $user_role  = $_POST['user_role'];
-  // $post_image        = $_FILES['image']['name'];
-  // $post_image_temp   = $_FILES['image']['tmp_name'];
-  $user_name         = $_POST['user_name'];
+  $username         = $_POST['username'];
   $user_email      = $_POST['user_email'];
-  $user_password         = date('user_password');
+  $user_password         = $_POST['user_password'];
 
-  // function to move files to new place. temp place the images folder 
-  //move_uploaded_file($post_image_temp, "../images/$post_image" );
 
-  // query to insert to database
-  $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date,post_image,post_content,post_tags, post_comment_count, post_status) ";
+  // INSERT INTO DATABASE
+  $query = "INSERT INTO users(user_firstname,user_lastname,user_role, username,user_email,user_password) ";
 
-  // values we are inserting from the from. we are not getting the hard code from the $post_comment_count = 4; here any more
-  $query .= "VALUES({$post_category_id},'{$post_title}','{$post_author}',now(),'{$post_image}','{$post_content}','{$post_tags}','{$post_comment_count}','{$post_status}') "; 
+  // INSERT VALUES FROM USER
+  $query .= "VALUES('{$user_firstname}','{$user_lastname}','{$user_role}','{$username}','{$user_email}','{$user_password}') "; 
   
-  // then we send the query in
-  $create_post_query = mysqli_query($connection, $query); 
+  // SEND IN 
+  $create_user_query = mysqli_query($connection, $query); 
 
-  // function to confirm result
-  confirmQuery($create_post_query);
+  // CONFIRM
+  confirmQuery($create_user_query);
 
 }
 
@@ -72,7 +68,7 @@ if(isset($_POST['create_user'])){
 
   <div class="form-group">
     <label for="title">Username</label>
-    <input type="text" class="form-control" name="user_name">
+    <input type="text" class="form-control" name="username">
   </div>
 
   <div class="form-group">

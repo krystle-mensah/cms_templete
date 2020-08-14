@@ -45,7 +45,7 @@
               break;
 
               // if source is equal to this page
-              case 'edit_users';
+              case 'edit_user';
 
               //then display this
               include "includes/edit_user.php";
