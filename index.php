@@ -14,10 +14,10 @@
 			<!-- Blog Entries Column -->
 			<div class="col-md-8">
 				
-				<h1 class="page-header">
+				<!-- <h1 class="page-header">
 					Page Heading
 					<small>Secondary Text</small>
-				</h1>
+				</h1> -->
 
 			<?php
 			 // select all the post table database. 
