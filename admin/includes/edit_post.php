@@ -65,8 +65,6 @@ if(isset($_POST['update_post'])){
 
   }
 
-
-
   // update post then set each column in the database table equal to variable the form.
   $query = "UPDATE posts SET ";
   $query .="post_title  = '{$post_title}', ";

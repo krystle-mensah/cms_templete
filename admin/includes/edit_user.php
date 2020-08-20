@@ -14,7 +14,7 @@ if(isset($_GET['edit_user'])){
 
     // values we bring back and assign to variable
     $userId = $row['userId'];
-    echo $username = $row['username'];
+    $username = $row['username'];
     $user_password = $row['user_password'];
     $user_firstname = $row['user_firstname'];
     $user_lastname = $row['user_lastname'];
@@ -23,36 +23,27 @@ if(isset($_GET['edit_user'])){
   }
 }
 
+// IF PRESSED
+if(isset($_POST['edit_user'])){
 
-
-
-
-// if this is declared/PRESSED
-if(isset($_POST[''])){
-  
-  // create a test
-  //echo $_POST['title'];
-
-  // VALUES PICK UP
+  // PICK UP VAULES
   $user_firstname        = $_POST['user_firstname'];
   $user_lastname  = $_POST['user_lastname'];
   $user_role  = $_POST['user_role'];
   $username         = $_POST['username'];
   $user_email      = $_POST['user_email'];
   $user_password         = $_POST['user_password'];
+ 
+  // INSERT INTO TABLE
+  $query = "UPDATE posts SET user_firstname = '{$user_firstname}', user_lastname = '{$user_lastname}', 
+  user_role = '{$user_role}', username = '{$username}', user_email = '{$user_email}', 
+  user_password = '{$user_password}' WHERE userId = {$the_user_id} ";
 
-
-  // INSERT INTO DATABASE
-  $query = "INSERT INTO users(user_firstname,user_lastname,user_role, username,user_email,user_password) ";
-
-  // INSERT VALUES FROM USER
-  $query .= "VALUES('{$user_firstname}','{$user_lastname}','{$user_role}','{$username}','{$user_email}','{$user_password}') "; 
+  //SEND IT IN
+  $edit_user_query = mysqli_query($connection, $query);
   
-  // SEND IN 
-  $create_user_query = mysqli_query($connection, $query); 
-
-  // CONFIRM
-  confirmQuery($create_user_query);
+  // CONFIRM QUERY
+  confirmQuery($edit_user_query); 
 
 }
 
@@ -75,9 +66,18 @@ if(isset($_POST[''])){
    
     <select name="user_role" id="">
       <!-- static data added -->
-      <option value="subscriber">select option</option>
-      <option value="admin">admin</option>
-      <option value="subscriber">subscriber</option>
+      <option value="subscriber"><?php echo $user_role; ?></option>
+
+      <?php if($user_role == 'admin'){
+
+      echo  "<option value='subscriber'>subscriber</option>";
+
+      } else {
+
+        echo "<option value='admin'>admin</option>";
+
+      }?>
+
     </select>
     
   </div> <!-- form-group -->
@@ -103,7 +103,7 @@ if(isset($_POST[''])){
   </div>
 
   <div class="form-group">
-    <input class="btn btn-primary" type="submit" name="edit_user" value="Add User">
+    <input class="btn btn-primary" type="submit" name="edit_user" value="Update User">
   </div>
 
 </form>
