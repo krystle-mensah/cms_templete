@@ -1,5 +1,11 @@
 <?php include "db.php"; ?>
 
+<!-- 
+function session start - it well tell our server to start session 
+-->
+
+<?php session_start(); ?>
+
 <?php 
 
 // checking if login in button is clicked
@@ -71,9 +77,33 @@ if(isset($_POST['login'])){
 
     // else if we find a match 
   } else if ($username ==  $db_username && $password == $db_user_password) {
+
+    // 156. Setting Values with Sessions
+
+    /*
+    where going to turn on a session at the top of this page. this username that we are bringing from the database we are assigning it to a session called user name so every time we wont to access this user name in the  where going to have this value where every we pull it out from. so if we say echo $_SESSION['username'] somewhere else and we have our session turned on where goin to able to get this value $db_username;. we assign from right to left.
+
+    157. Validating User Admin
+
+    where using this page to set our sessions. then we using the admin header to receive it.
+
+
+    */
+    $_SESSION['username'] = $db_username;
+    $_SESSION['firstname'] = $db_user_firstname;
+    $_SESSION['lastname'] = $db_user_lastname;
+    $_SESSION['user_role'] = $db_user_role;
+
+    /*
+    once we get to admin we well have all the above information. first we need to turn it on. im going to admin_header to add the session function there as well.   
+    */
     
     // relocate user to the admin page
     header("Location: ../admin");
+
+    
+
+
     
     // not sure I need this brench
   } else {

@@ -1,10 +1,4 @@
-
-
-
-
 <?php 
-
-
 
 // if this is declared/PRESSED
 if(isset($_POST['create_user'])){

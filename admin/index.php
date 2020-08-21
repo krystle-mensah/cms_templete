@@ -15,7 +15,11 @@
 					<div class="col-lg-12">
 						<h1 class="page-header">
 							Welcome to admin
-							<small>Author</small>
+							<!--
+							156. Setting Values with Sessions 
+							Im going to echo some of the sessions 
+							-->
+							<small><?php echo $_SESSION['username'] ?></small>
 						</h1><!-- page-header -->
 					</div> <!-- col-lg-12 -->
 				</div><!-- /.row -->
