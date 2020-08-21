@@ -28,7 +28,7 @@ if(isset($_POST['login'])){
 
   //154. select user query
 
-  // SELECT all from TABLE WHERE COLUMN MATCHES USER INPUT. 
+  // SELECT all from TABLE WHERE COLUMN MATCHES USER INPUT FROM FORM. 
   $query = "SELECT * FROM users WHERE  username = '{$username}' ";
 
   //FUNCTION - to bring BACK MATCH.
@@ -69,14 +69,10 @@ if(isset($_POST['login'])){
 
   //once we have the row with the speicfic id we need to validate it with an if statement
 
-  // if user input is not same as username we have in the database and the password
-  if($username !==  $db_username && $password !== $db_user_password){
-    
-    //  then refresh the page and stay on the index page
-    header("Location: ../index.php");
+  //159. Login improved- Edwin from the Future
 
-    // else if we find a match 
-  } else if ($username ==  $db_username && $password == $db_user_password) {
+  // 3 equal signs means is it exactly identical
+  if($username ===  $db_username && $password === $db_user_password){
 
     // 156. Setting Values with Sessions
 
@@ -86,26 +82,17 @@ if(isset($_POST['login'])){
     157. Validating User Admin
 
     where using this page to set our sessions. then we using the admin header to receive it.
-
-
     */
+
     $_SESSION['username'] = $db_username;
     $_SESSION['firstname'] = $db_user_firstname;
     $_SESSION['lastname'] = $db_user_lastname;
     $_SESSION['user_role'] = $db_user_role;
-
-    /*
-    once we get to admin we well have all the above information. first we need to turn it on. im going to admin_header to add the session function there as well.   
-    */
     
-    // relocate user to the admin page
+    // locate user to the admin page
     header("Location: ../admin");
 
-    
-
-
-    
-    // not sure I need this brench
+    // else if we dont find a match 
   } else {
     
     // relocate user to the index page

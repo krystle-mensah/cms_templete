@@ -1,22 +1,30 @@
 <!-- outwould buffering -->
 <?php ob_start(); ?>
+<?php include "../includes/db.php"; ?>
 
 <!-- 
 156. Setting Values with Sessions
 function session start - it well tell our server to start session which can be accessed from everyehere. next index page
 
 157. Validating User Admin
-
 this is where we receive our session
-
-
 -->
-
 <?php session_start(); ?>
 
-<?php include "../includes/db.php"; ?>
+<?php 
 
-<?php include "function.php"; ?>
+// if(isset($_SESSION['user_role'])) {
+
+
+
+// } else {
+
+// header("location: ../index.php");
+
+
+// }
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">

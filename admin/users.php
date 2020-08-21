@@ -53,9 +53,6 @@
               // stop
               break;
 
-
-
-
               // if case's fail then default to this page.
               default: 
 
