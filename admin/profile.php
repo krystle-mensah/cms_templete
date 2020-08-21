@@ -8,7 +8,37 @@ where now pulling the sessions create on login
 -->
 
 
+<?php 
+if( isset( $_SESSION['username'] )) {
+	//TEST - Go to profile page and see if the var is displaying
+	////echo $_SESSION['username'];
+// IF SET CONVERT TO VAR.
+	$username = $_SESSION['username'];
 
+	// SELECT ALL FROM USER WHERE COLUMN = 'SESSION'
+	$query = "SELECT * FROM users WHERE username = '{$username}' ";
+
+	// SEND IN 
+	$_select_user_profile_query = mysqli_query($connection, $query);
+
+	// CONDITION TO LOOP THROUGH EVERY {$username}
+	while( $row = mysqli_fetch_array( $_select_user_profile_query ) ){
+
+		// THEN PULL OUT VALUES
+		$userId = $row['userId'];
+    $username = $row['username'];
+    $user_password = $row['user_password'];
+    $user_firstname = $row['user_firstname'];
+    $user_lastname = $row['user_lastname'];
+    $user_email = $row['user_email'];
+    $user_role = $row['user_role'];
+
+
+
+	}
+
+}
+?>
 
 
 
@@ -28,6 +58,67 @@ where now pulling the sessions create on login
 							Welcome to admin
 							<small>Author</small>
 						</h1><!-- page-header -->
+
+
+
+<!-- multipart/form-data lets you send encoded data  -->
+<form action="" method="post" enctype="multipart/form-data"> 
+
+  <div class="form-group">
+    <label for="title">First Name</label>
+    <input type="text" value="<?php echo $user_firstname; ?>" class="form-control" name="user_firstname">
+  </div>
+
+  <div class="form-group">
+    <label for="title">Last Name</label>
+    <input type="text" value="<?php echo $user_lastname; ?>"  class="form-control" name="user_lastname">
+  </div>
+
+  <div class="form-group">
+   
+    <select name="user_role" id="">
+      <!-- static data added -->
+      <option value="subscriber"><?php echo $user_role; ?></option>
+
+      <?php if($user_role == 'admin'){
+
+      echo  "<option value='subscriber'>subscriber</option>";
+
+      } else {
+
+        echo "<option value='admin'>admin</option>";
+
+      }?>
+
+    </select>
+    
+  </div> <!-- form-group -->
+
+  <!-- <div class="form-group">
+    <label for="post_image">Post Image</label>
+    <input type="file"  name="image">
+  </div> -->
+
+  <div class="form-group">
+    <label for="title">Username</label>
+    <input type="text" value="<?php echo $username; ?>" class="form-control" name="username">
+  </div>
+
+  <div class="form-group">
+    <label for="post_content">Email</label>
+    <input type="email" value="<?php echo $user_email; ?>" class="form-control" name="user_email">
+  </div>
+
+  <div class="form-group">
+    <label for="post_content">Password</label>
+    <input type="password" value="<?php echo $user_password; ?>" class="form-control" name="user_password">
+  </div>
+
+  <div class="form-group">
+    <input class="btn btn-primary" type="submit" name="edit_user" value="Update Profile">
+  </div>
+
+</form>
 
             
 
