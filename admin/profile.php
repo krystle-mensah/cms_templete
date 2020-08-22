@@ -9,7 +9,7 @@ where now pulling the sessions create on login
 
 
 <?php 
-if( isset( $_SESSION['username'] )) {
+if( isset($_SESSION['username'])) {
 	//TEST - Go to profile page and see if the var is displaying
 	////echo $_SESSION['username'];
 // IF SET CONVERT TO VAR.
@@ -33,14 +33,40 @@ if( isset( $_SESSION['username'] )) {
     $user_email = $row['user_email'];
     $user_role = $row['user_role'];
 
-
-
 	}
 
 }
 ?>
 
+<?php 
 
+// // IF PRESSED
+// if(isset($_POST['edit_user'])){
+
+//   // PICK UP VAULES
+//   $user_firstname        = $_POST['user_firstname'];
+//   $user_lastname  = $_POST['user_lastname'];
+//   $user_role  = $_POST['user_role'];
+//   $username         = $_POST['username'];
+//   $user_email      = $_POST['user_email'];
+//   $user_password         = $_POST['user_password'];
+ 
+//   // INSERT INTO TABLE
+//   $query = "UPDATE users SET user_firstname = '{$user_firstname}', user_lastname = '{$user_lastname}', 
+//   user_role = '{$user_role}', username = '{$username}', user_email = '{$user_email}', 
+//   user_password = '{$user_password}' WHERE username = '{$username}' ";
+
+//   //SEND IT IN
+//   $edit_user_query = mysqli_query($connection, $query);
+  
+//   // CONFIRM QUERY
+//   confirmQuery($edit_user_query); 
+
+// }
+
+
+
+?>
 
 	<div id="wrapper">
 

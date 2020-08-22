@@ -46,14 +46,9 @@
 				$post_content = substr($row['post_content'],0,400);
 				$post_status = $row['post_status'];
 				
-				//there is a probelm with capital letters on published
-
-				// if $var is not published 
-				if($post_status !==  'published') {	
-					
-					echo "<h1 class='text-center'> NO POST SORRY </h1>"; 	
+				// There is a probelm with capital letters on published
 				
-				} else {
+				if($post_status ==  'published') {
 
 				?>
 				

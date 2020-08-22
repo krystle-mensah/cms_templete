@@ -52,22 +52,21 @@ if(isset($_POST['create_post'])){
   </div>
 
   <div class="form-group">
-    <!-- <label for="categories">Categories</label> -->
     <select name="post_category_id" id="">
 
-    <?php
+      <?php
 
         // hold all from database table
-        $query = "SELECT * FROM categories ";
+        $query = "SELECT * FROM categories";
+        
         // HOLD and send in query and connection
         $select_categories = mysqli_query($connection,$query);
         // confirm variable
-        confirmQuery($select_categories);
+        //confirmQuery($select_categories);
 
-        while($row = mysqli_fetch_assoc($select_categories )) {
-        $cat_id = $row['cat_id'];
-        $cat_title = $row['cat_title'];
-
+        while($row = mysqli_fetch_assoc($select_categories)) {
+          $cat_id = $row['cat_id'];
+          $cat_title = $row['cat_title'];
 
         if($cat_id == $post_category_id) {
       
@@ -81,7 +80,7 @@ if(isset($_POST['create_post'])){
             
         }
 
-    ?>
+      ?>
     
     </select>
     
