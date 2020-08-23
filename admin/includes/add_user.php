@@ -27,6 +27,9 @@ if(isset($_POST['create_user'])){
   // CONFIRM
   //confirmQuery($create_user_query);
 
+// let them no it was created
+  echo "User Created: " . " " . "<a href='users.php'>View Users</a> "; 
+
 }
 
 ?>

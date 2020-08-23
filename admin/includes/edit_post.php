@@ -81,7 +81,7 @@ if(isset($_POST['update_post'])){
   $update_post = mysqli_query($connection,$query);
   
   // confirm var
-  confirmQuery($update_post);
+  //confirmQuery($update_post);
   
   // display this
   echo "<p class='bg-success'>Post Updated. <a href='../post.php?p_id={$the_post_id}'>View Post </a> or <a href='posts.php'>Edit More Posts</a></p>";
@@ -109,7 +109,7 @@ if(isset($_POST['update_post'])){
         // HOLD and send in query and connection
         $select_categories = mysqli_query($connection,$query);
         // confirm variable
-        confirmQuery($select_categories);
+        //confirmQuery($select_categories);
 
         while($row = mysqli_fetch_assoc($select_categories )) {
         $cat_id = $row['cat_id'];
@@ -142,9 +142,27 @@ if(isset($_POST['update_post'])){
   </div>
 
   <div class="form-group">
-    <label for="title">Post Status</label>
-    <input value="<?php echo $post_status; ?>" type="text" class="form-control" name="post_status">
-  </div>
+
+    <select name="post_status" id="">
+
+      <option value='<?php echo $post_status; ?>'><?php echo $post_status;?></option>
+
+      <?php 
+      if($post_status == 'published'){
+        echo "<option selected value='draft'>Draft</option>";
+      } else {
+        echo "<option selected value='published'>Publish</option>";
+      }
+      
+     
+      
+      ?>
+
+    </select>
+
+  </div><!-- form-group -->
+
+  
 
   <div class="form-group">
     <!-- not sure if below code is supossed to be here -->

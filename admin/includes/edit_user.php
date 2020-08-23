@@ -43,7 +43,7 @@ if(isset($_POST['edit_user'])){
   $edit_user_query = mysqli_query($connection, $query);
   
   // CONFIRM QUERY
-  confirmQuery($edit_user_query); 
+  //confirmQuery($edit_user_query); 
 
 }
 
