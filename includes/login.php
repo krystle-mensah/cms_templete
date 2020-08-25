@@ -34,28 +34,24 @@ if(isset($_POST['login'])){
   //FUNCTION - to bring BACK MATCH.
   $select_user_query = mysqli_query($connection, $query);
 
-  /* 
-  
-  TEST - Try submitting a user and see if you get any error.
-  
-  IF NOT $var
-  
-  */
-
+  //IF NOT $var
   if(!$select_user_query){
 
+    //Print a message and terminate the current script:
     die("QUERY FAILED" . mysqli_error($connection));
 
   }
   
-  // WHILE input if ture condition it to loop through  
+  //if query didnt fail
+
+  // condition it to loop
   while($row = mysqli_fetch_array($select_user_query)){
     // TEST - when we type the right user we a getting data
     //echo $db_id = $row['userId'];  // OUTPUT - 1. so where getting the row with the specific id
 
     // 155. Validating User Query Front End
 
-    // now we have found the id for a specific user in our database we wont to pull some more information out of that
+    // now we have found the id for a specific user in our database we wont to pull some more information
 
     $db_userId = $row['userId'];
     $db_username = $row['username'];  
@@ -71,17 +67,17 @@ if(isset($_POST['login'])){
 
   //159. Login improved- Edwin from the Future
 
-  // 3 equal signs means is it exactly identical
+  // 3 equal signs means is it exactly identical.
+  // if ture 
   if($username ===  $db_username && $password === $db_user_password){
 
     // 156. Setting Values with Sessions
 
     /*
-    where going to turn on a session at the top of this page. this username that we are bringing from the database we are assigning it to a session called user name so every time we wont to access this user name in the  where going to have this value where every we pull it out from. so if we say echo $_SESSION['username'] somewhere else and we have our session turned on where goin to able to get this value $db_username;. we assign from right to left.
+    create a session for that user
+     
 
-    157. Validating User Admin
-
-    where using this page to set our sessions. then we using the admin header to receive it.
+    157. Validating User Admin. then we using the admin header to receive it.
     */
 
     $_SESSION['username'] = $db_username;

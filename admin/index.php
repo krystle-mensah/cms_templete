@@ -164,6 +164,8 @@ echo "<div class='huge'>{$user_count}</div>";
 
 <?php
 
+//175. Adding extra element to dashboard - not working
+
 $query = "SELECT * FROM posts WHERE post_status = 'draft'";
 $select_all_draft_posts = mysqli_query($connection, $query);
 //Return the number of rows in table posts

@@ -58,6 +58,9 @@ this is where we receive our session
 	<!-- google chart -->
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
+	<!-- ckeditor  - a text editor -->
+	<script src="https://cdn.ckeditor.com/ckeditor5/21.0.0/classic/ckeditor.js"></script>
+
 </head>
 
 <body>

@@ -145,16 +145,17 @@ if(isset($_POST['update_post'])){
 
     <select name="post_status" id="">
 
-      <option value='<?php echo $post_status; ?>'><?php echo $post_status;?></option>
+      <option value='<?php echo $post_status;?>'><?php echo $post_status;?></option>
 
       <?php 
-      if($post_status == 'published'){
+      // this is not working - 174. Adding Dynamic Category Selection for Edit Post Page
+      if($post_status === "published"){
         echo "<option selected value='draft'>Draft</option>";
-      } else {
+      } 
+      else if($post_status === "draft") 
+      {
         echo "<option selected value='published'>Publish</option>";
       }
-      
-     
       
       ?>
 
