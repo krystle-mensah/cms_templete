@@ -65,7 +65,10 @@
 				<p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date ?></p>
 				
 				<hr>
+				
+				<a href="http://">
 				<img class="img-responsive" src="images/<?php echo $post_image; ?>" alt="">
+				</a>
 				
 				<hr>
 				

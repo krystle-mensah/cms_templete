@@ -2,17 +2,14 @@
 
 <!-- 
 160. Creating the Profile Page
-
-where now pulling the sessions create on login
-
 -->
 
+<?php
 
-<?php 
-if( isset($_SESSION['username'])) {
+if( isset( $_SESSION[ 'username' ] ) ) {
 	//TEST - Go to profile page and see if the var is displaying
 	////echo $_SESSION['username'];
-// IF SET CONVERT TO VAR.
+  // IF SET CONVERT TO VAR.
 	$username = $_SESSION['username'];
 
 	// SELECT ALL FROM USER WHERE COLUMN = 'SESSION'
@@ -36,6 +33,7 @@ if( isset($_SESSION['username'])) {
 	}
 
 }
+
 ?>
 
 <?php 

@@ -1,9 +1,5 @@
 <?php include "db.php"; ?>
 
-<!-- 
-function session start - it well tell our server to start session 
--->
-
 <?php session_start(); ?>
 
 <?php 
@@ -59,7 +55,8 @@ if(isset($_POST['login'])){
     $db_user_email = $row['user_email']; 
     $db_user_firstname = $row['user_firstname']; 
     $db_user_lastname = $row['user_lastname']; 
-    $db_user_email = $row['user_email']; 
+    $db_user_email = $row['user_email'];
+    $db_user_role = $row['user_role']; 
 
   }
 
@@ -71,14 +68,7 @@ if(isset($_POST['login'])){
   // if ture 
   if($username ===  $db_username && $password === $db_user_password){
 
-    // 156. Setting Values with Sessions
-
-    /*
-    create a session for that user
-     
-
-    157. Validating User Admin. then we using the admin header to receive it.
-    */
+    // then create session to user in admin
 
     $_SESSION['username'] = $db_username;
     $_SESSION['firstname'] = $db_user_firstname;
@@ -95,6 +85,15 @@ if(isset($_POST['login'])){
     header("Location: ../index.php");
   
   }
+
+  
+
+   
+
+
+
+
+
 
 }
 
