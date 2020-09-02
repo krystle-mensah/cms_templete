@@ -1,6 +1,6 @@
 <?php include "db.php"; ?>
 
-<?php session_start(); ?>
+<?php session_start();?>
 
 <?php 
 
@@ -17,7 +17,7 @@ if(isset($_POST['login'])){
   $username = $_POST['username'];
   $password = $_POST['password'];
   
-  // CLEAN - USER INPUT to avoid mysql injections.
+  // CLEAN INPUT - To avoid mysql injections.
   // FUNCTION - Escapes special characters in a string for use in an SQL query, taking into account the current character set of the connection.
   $username = mysqli_real_escape_string($connection, $username);
   $password =  mysqli_real_escape_string($connection, $password);
@@ -43,58 +43,47 @@ if(isset($_POST['login'])){
   // condition it to loop
   while($row = mysqli_fetch_array($select_user_query)){
     // TEST - when we type the right user we a getting data
-    //echo $db_id = $row['userId'];  // OUTPUT - 1. so where getting the row with the specific id
-
-    // 155. Validating User Query Front End
+    // echo $db_id = $row['userId'];  // OUTPUT - 1. so where getting the row with the specific id
 
     // now we have found the id for a specific user in our database we wont to pull some more information
 
-    $db_userId = $row['userId'];
-    $db_username = $row['username'];  
-    $db_user_password = $row['user_password'];  
-    $db_user_email = $row['user_email']; 
+    $db_userId = $row['userId']; 
     $db_user_firstname = $row['user_firstname']; 
+    $db_username = $row['username'];  // OUTPUT - krys
+    $db_user_password = $row['user_password'];   
     $db_user_lastname = $row['user_lastname']; 
     $db_user_email = $row['user_email'];
     $db_user_role = $row['user_role']; 
 
   }
 
-  //once we have the row with the speicfic id we need to validate it with an if statement
+  //once we have the row with the id we need to validate it with an if statement
 
-  //159. Login improved- Edwin from the Future
+  // 155. Validating User Query Front End
 
-  // 3 equal signs means is it exactly identical.
-  // if ture 
   if($username ===  $db_username && $password === $db_user_password){
 
-    // then create session to user in admin
+    // Then create sessions
 
-    $_SESSION['username'] = $db_username;
     $_SESSION['firstname'] = $db_user_firstname;
+    $_SESSION['username'] = $db_username;
+    $_SESSION['user_password'] = $db_user_password;
     $_SESSION['lastname'] = $db_user_lastname;
+    $_SESSION['user_email'] = $db_user_email;
     $_SESSION['user_role'] = $db_user_role;
     
-    // locate user to the admin page
+    // AND locate user to the admin page
     header("Location: ../admin");
 
-    // else if we dont find a match 
+    // ELSE we dont find a match 
   } else {
     
     // relocate user to the index page
     header("Location: ../index.php");
   
   }
-
   
+} // isset 
 
-   
-
-
-
-
-
-
-}
 
 ?>

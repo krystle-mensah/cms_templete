@@ -15,8 +15,6 @@
 							Welcome to admin
 							<!-- 156. Setting Values with Sessions Im going to echo some of the sessions -->
 							<small><?php echo $_SESSION['username'] ?></small>
-							<?php session_destroy(); ?>
-							
 						</h1><!-- page-header -->
 					</div> <!-- col-lg-12 -->
 				</div><!-- /.row -->

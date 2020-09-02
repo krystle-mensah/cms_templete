@@ -1,9 +1,9 @@
+<?php session_start(); ?>
+<?php include "./function.php"; ?>
 <?php include "../includes/db.php"; ?>
 
 <!-- outwould buffering -->
 <?php ob_start(); ?>
-
-<?php session_start(); ?>
 
 <?php
 
@@ -12,9 +12,10 @@
 
 if( !isset($_SESSION['user_role'] )) {
 	
-		header("Location: ../index.php");
+	header("Location: ../index.php");
 	
 }
+
 ?>
 
 <!DOCTYPE html>

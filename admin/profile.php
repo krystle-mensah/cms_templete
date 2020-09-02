@@ -1,16 +1,22 @@
 <?php include "includes/admin_header.php"; ?>
 
-<!-- 
-160. Creating the Profile Page
--->
+<?php 
+              
+// TEST - For session
+
+// if (isset($_SESSION['username'])) {
+//   echo $_SESSION['username'];
+// }
+                
+?>
 
 <?php
 
-if( isset( $_SESSION[ 'username' ] ) ) {
-	//TEST - Go to profile page and see if the var is displaying
-	////echo $_SESSION['username'];
+// CHECK session is set
+if(isset($_SESSION['username'])) {
+  
   // IF SET CONVERT TO VAR.
-	$username = $_SESSION['username'];
+  $username = $_SESSION['username'];
 
 	// SELECT ALL FROM USER WHERE COLUMN = 'SESSION'
 	$query = "SELECT * FROM users WHERE username = '{$username}' ";
@@ -21,7 +27,7 @@ if( isset( $_SESSION[ 'username' ] ) ) {
 	// CONDITION TO LOOP THROUGH EVERY {$username}
 	while( $row = mysqli_fetch_array( $_select_user_profile_query ) ){
 
-		// THEN PULL OUT VALUES
+		// THEN PULL OUT VALUES FROM DATABASE
 		$userId = $row['userId'];
     $username = $row['username'];
     $user_password = $row['user_password'];
@@ -30,13 +36,9 @@ if( isset( $_SESSION[ 'username' ] ) ) {
     $user_email = $row['user_email'];
     $user_role = $row['user_role'];
 
-	}
+  }
 
 }
-
-?>
-
-<?php 
 
 // // IF PRESSED
 // if(isset($_POST['edit_user'])){
@@ -48,7 +50,6 @@ if( isset( $_SESSION[ 'username' ] ) ) {
 //   $username         = $_POST['username'];
 //   $user_email      = $_POST['user_email'];
 //   $user_password         = $_POST['user_password'];
- 
 //   // INSERT INTO TABLE
 //   $query = "UPDATE users SET user_firstname = '{$user_firstname}', user_lastname = '{$user_lastname}', 
 //   user_role = '{$user_role}', username = '{$username}', user_email = '{$user_email}', 
@@ -82,7 +83,7 @@ if( isset( $_SESSION[ 'username' ] ) ) {
 							Profile page 
 							<!-- <small>Author</small> -->
 						</h1><!-- page-header -->
-
+            
 
 
 <!-- multipart/form-data lets you send encoded data  -->
