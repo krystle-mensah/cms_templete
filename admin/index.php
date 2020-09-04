@@ -64,9 +64,6 @@
 									</div>
 									<div class="col-xs-9 text-right">
 
-
-
-
 										<?php 
 
 									$query = "SELECT * FROM comments";
@@ -102,20 +99,19 @@
 									<div class="col-xs-9 text-right">
 									<?php 
 
-$query = "SELECT * FROM users";
-$select_all_users = mysqli_query($connection, $query);
+										$query = "SELECT * FROM users";
+										$select_all_users = mysqli_query($connection, $query);
 
-//Return the number of rows in table posts
-$user_count = mysqli_num_rows($select_all_users);
+										//Return the number of rows in table posts
+										$user_count = mysqli_num_rows($select_all_users);
 
-echo "<div class='huge'>{$user_count}</div>";
+										echo "<div class='huge'>{$user_count}</div>";
 
-
-?>
+									?>
 										<div> Users</div>
 									</div>
 								</div>
-							</div>
+							</div><!-- panel-heading --> 
 							<a href="users.php">
 								<div class="panel-footer">
 									<span class="pull-left">View Details</span>
@@ -160,8 +156,6 @@ echo "<div class='huge'>{$user_count}</div>";
 					</div><!-- ALIGNMENT -->
 				</div><!-- /.row -->
 
-
-
 <?php
 
 //175. Adding extra element to dashboard - not working
@@ -184,12 +178,10 @@ $subscriber_count = mysqli_num_rows($select_all_subscribers);
 
 ?>
 
-
-
-
 				<div class="row">
 
 					<script type="text/javascript">
+						
 						google.charts.load('current', {'packages':['bar']});
 						google.charts.setOnLoadCallback(drawChart);
 
@@ -197,13 +189,12 @@ $subscriber_count = mysqli_num_rows($select_all_subscribers);
 							var data = google.visualization.arrayToDataTable([
 								['Data', 'Count'],
 
-
 								<?php 
 
 									$element_text = ['Active Posts', 'Draft Posts', 'Commments','Pending Comments', 'Users','Subscribers', 'Categories'];
 									$element_count = [$post_count, $post_draft_count, $comment_count, $unapproved_comment_count, $user_count, $subscriber_count, $categories_count];
 
-									for($i =0;$i< 7;$i++){
+									for( $i = 0; $i < 7; $i++ ) {
 
 										echo "['{$element_text[$i]}'" . "," . "{$element_count[$i]}],";
 
@@ -227,9 +218,11 @@ $subscriber_count = mysqli_num_rows($select_all_subscribers);
 
 							chart.draw(data, google.charts.Bar.convertOptions(options));
 						}
+
 					</script>
 			
-					<div id="columnchart_material" style="width: 'auto'; height: 500px;"></div>
+					<!-- <div id="columnchart_material" style="width: 'auto'; height: 500px;"></div> -->
+					<div id="columnchart_material"></div>
 
 				</div><!-- row -->
 

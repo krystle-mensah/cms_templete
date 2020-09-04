@@ -40,6 +40,9 @@ if( !isset($_SESSION['user_role'] )) {
 	<!-- Custom Fonts -->
 	<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+	<!-- admin styles -->
+	<link rel="stylesheet" href="css/admin_style.css">
+
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -47,7 +50,7 @@ if( !isset($_SESSION['user_role'] )) {
 		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 	<![endif]-->
 
-	<!-- google chart -->
+	<!-- GOOGLE CHART -->
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 	<!-- ckeditor  - a text editor -->

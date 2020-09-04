@@ -1,7 +1,5 @@
 <?php 
 
-
-
 // if this is declared
 if(isset($_POST['create_post'])){
   
@@ -38,6 +36,12 @@ if(isset($_POST['create_post'])){
 
   // function to confirm result
   confirmQuery($create_post_query);
+  
+  // Test function
+  // confirmQuery($Hello);
+
+  // let them no it was created
+  echo "Post Created: " . " " . "<a href='posts.php'>View Posts</a> "; 
 
 }
 
@@ -61,8 +65,9 @@ if(isset($_POST['create_post'])){
         
         // HOLD and send in query and connection
         $select_categories = mysqli_query($connection,$query);
-        // confirm variable
-        //confirmQuery($select_categories);
+        
+        // CONFIRM VAR
+        confirmQuery($select_categories);
 
         while($row = mysqli_fetch_assoc($select_categories)) {
           $cat_id = $row['cat_id'];
