@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	<div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
@@ -29,9 +31,42 @@
 						echo "<li><a href='/cms/'>{$cat_title}</a></li>";
 					}
 					?> 
+
+<!-- I only want the below link to show if the user is admin -->
+
+<?php
+
+
+// if( isset){
+
+// }
+
+?>
+
 					<li>
 						<a href="admin">Admin</a>
 					</li>
+<!-- what we wont to do is if where logged in and editing a post we wont to display an edit button -->
+					<?php
+
+					// first we check if a user is set because only users enter into admin.
+					// where also checking there role because only admin user should be able to edit post i think.
+					if(isset($_SESSION['user_role'])) {
+    
+						if(isset($_GET['p_id'])) {
+								
+							$the_post_id = $_GET['p_id'];
+						
+						echo "<li><a href='/cms/admin/posts.php?source=edit_post&p_id={$the_post_id}'>Edit Post</a></li>";
+						
+						}
+				
+				
+				
+				}
+					
+					
+					?> 
 					
 				</ul>
 			</div><!-- /.navbar-collapse -->

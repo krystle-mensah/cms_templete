@@ -66,15 +66,15 @@
 				
 				<hr>
 				
-				<a href="http://">
-				<img class="img-responsive" src="images/<?php echo $post_image; ?>" alt="">
+				<a href="post.php?p_id=<?php echo $post_id; ?>">
+					<img class="img-responsive" src="images/<?php echo $post_image; ?>" alt="">
 				</a>
 				
 				<hr>
 				
 				<p><?php echo $post_content ?></p>
 
-				<a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+				<a class="btn btn-primary" href="post.php?p_id=<?php echo $post_id; ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
 				<hr>
 			
@@ -87,4 +87,5 @@
 
 		</div><!-- /.row -->
 
+<!-- The include or require statement takes all the text/code/markup that exists in the specified file and copies it into the file that uses the include statement. -->
 <?php include "includes/footer.php" ?>

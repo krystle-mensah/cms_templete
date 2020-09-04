@@ -80,11 +80,11 @@ if(isset($_POST['update_post'])){
   // Then we send in the query
   $update_post = mysqli_query($connection,$query);
   
-  // confirm var
-  //confirmQuery($update_post);
+  // confirm update post
+  confirmQuery($update_post);
   
   // display this
-  echo "<p class='bg-success'>Post Updated. <a href='../post.php?p_id={$the_post_id}'>View Post </a> or <a href='posts.php'>Edit More Posts</a></p>";
+  echo "<p class='success-button'>Post Updated. <a href='../post.php?p_id={$the_post_id}'>View Post </a> or <a href='posts.php'>Edit More Posts</a></p>";
 
 }
 
