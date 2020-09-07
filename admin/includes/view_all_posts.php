@@ -1,26 +1,62 @@
 <?php 
 //this is a bet strange i dont understand how the input apply is connected to the if set.
 
-// first we check if there is any activeity on the input
-
+// first we check for activity on the checkbox
 if( isset( $_POST['checkBoxArray'] ) ) {
-  //echo 'receving data';
+  //echo 'receving data'; // output - there is output when the apply button is clicked
+  
+  // now we wont to loop around the checkbox
 
-  foreach( $_POST['checkBoxArray'] as  $checkBoxValue ) {
+  foreach( $_POST['checkBoxArray'] as $postValueId ) {
     
     //print_r($_POST['checkBoxArray']); // OUTPUTS - Key and value
     //print_r($checkBoxValue);// OUTPUTS - Value  
 
+    //echo $bulk_options = $_POST['bulk_options']; // output - option values
+
     $bulk_options = $_POST['bulk_options'];
-  }
-}
+
+    switch($bulk_options){
+      case 'published':
+        $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = {$postValueId} ";
+        $update_to_published_status = mysqli_query($connection, $query);
+
+      break;
+
+      case 'draft':
+        $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = {$postValueId} ";
+
+        $update_to_published_status = mysqli_query($connection, $query);
+
+      break;
+
+      case 'delete':
+        $query = "DELETE FROM posts WHERE post_id = {$postValueId} ";
+        
+        $update_to_published_status = mysqli_query($connection, $query);
+
+        if(!$update_to_published_status) {
+
+          // Print a message and terminate the current script:
+          die("QUERY FAILED" . mysqli_error($connection));
+  
+        }
+
+      break;
+
+      
+
+    } //switch
+
+  } // foreach
+
+} // isset
 
 
 ?>
 
 
 <form action="" method='post'>
-
 
   <table class="table table-bordered table-hover">
 
@@ -96,7 +132,7 @@ if( isset( $_POST['checkBoxArray'] ) ) {
       
       // select ALL from the table where [column name] variable is equal to this [column name] variable.
       $request_to = "SELECT * FROM categories WHERE cat_id = {$post_category_id} ";
-                          
+      
       // function to send query into the database. 
       $select_categories_id = mysqli_query($connection,$request_to);
        

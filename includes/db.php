@@ -1,15 +1,13 @@
 <?php
 
 // -- FAST CONNECTION
-////assign variable to open a new connection to server with this parameters
-//$connection = mysqli_connect('localhost', 'root','','cms');
-//// if connection is ture
-//if($connection) {
-  //// display this in the browser else do nothing. 
-  //echo "We are connected";
-//}
-
-
+//assign variable to open a new connection to server with this parameters
+////$connection = mysqli_connect('localhost', 'root','','cms');
+// if connection is ture
+////if($connection) {
+  // display this in the browser else do nothing. 
+  ////echo "We are connected";
+////}
 
 // SECURE CONNECTION
 

@@ -8,10 +8,11 @@ function confirmQuery($result) {
   //if not a query
   if(!$result){
 
-    // then do this
+    // Print a message and terminate the current script:
     die("QUERY FAILED" . mysqli_error($connection));
 
   }
+  
 }
 
 // function insert_categories(){

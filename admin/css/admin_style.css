@@ -23,3 +23,11 @@
 }
 
 /* end edit post page */
+
+/* admin posts */
+
+div#bulkOptionContainer {
+  padding: 0 0 10px 0;
+}
+
+/* end admin posts */

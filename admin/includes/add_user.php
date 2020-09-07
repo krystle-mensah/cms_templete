@@ -43,7 +43,7 @@ if(isset($_POST['create_user'])){
   confirmQuery($create_user_query);
 
   // let them no it was created
-  echo "User Created: " . " " . "<a href='users.php'>View Users</a> "; 
+  echo "<p class='success-button'>User Created. <a href='users.php'>View Users</a>"; 
 
 }
 
