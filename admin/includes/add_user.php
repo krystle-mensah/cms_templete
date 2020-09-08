@@ -1,4 +1,6 @@
-<?php 
+<?php
+
+//when we edited the password it is not encrptedaf
 
 // if this is declared/PRESSED
 if(isset($_POST['create_user'])){

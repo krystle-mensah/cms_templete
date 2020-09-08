@@ -80,15 +80,16 @@ if(isset($_GET['p_id'])){
 				// if detected
 				if(isset($_POST['create_comment'])){
 
-					//echo $_POST['comment_author'];
+				// and get this from the url
+				$the_post_id = $_GET['p_id'];
 
-					// and get this from the url
-					$the_post_id = $_GET['p_id'];
+				// then catch the data from the form in $var.
+				$comment_author = $_POST['comment_author'];
+				$comment_email = $_POST['comment_email'];
+				$comment_content = $_POST['comment_content'];
 
-					// then catch the data from the form in $var.
-					$comment_author = $_POST['comment_author'];
-					$comment_email = $_POST['comment_email'];
-					$comment_content = $_POST['comment_content'];
+				// if user does not fill in these fields
+				if( !empty( $comment_author ) && !empty( $comment_email ) && !empty( $comment_content ) ){
 
 					// insert into comment table and the colums of the table. comment_status will be static.  
 					$query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_content, comment_status,comment_date)";
@@ -110,6 +111,23 @@ if(isset($_GET['p_id'])){
 					$query = "UPDATE posts SET post_comment_count = post_comment_count + 1 WHERE post_id = $the_post_id ";
 					// send query
 					$update_comment_count = mysqli_query($connection, $query);
+
+				} else {
+					// I might change this to php
+					echo "<script>alert('Fields cannot be empty')</script>";
+
+				}
+
+
+
+
+
+
+			
+
+					
+
+					
 
 				}
 

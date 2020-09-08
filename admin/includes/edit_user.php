@@ -13,29 +13,28 @@ if(isset($_GET['edit_user'])){
   while($row = mysqli_fetch_array($select_users_query)) {
 
     // values we bring back and assign to variable
-    $userId = $row['userId'];
-    $username = $row['username'];
-    $user_password = $row['user_password'];
+    $userId         = $row['userId'];
+    $username       = $row['username'];
+    $user_password  = $row['user_password'];
     $user_firstname = $row['user_firstname'];
-    $user_lastname = $row['user_lastname'];
-    $user_email = $row['user_email'];
-    $user_role = $row['user_role'];
+    $user_lastname  = $row['user_lastname'];
+    $user_email     = $row['user_email'];
+    $user_role      = $row['user_role'];
   }
 }
 
 // IF PRESSED
 if(isset($_POST['edit_user'])){
-
   // PICK UP VAULES
   $user_firstname        = $_POST['user_firstname'];
-  $user_lastname  = $_POST['user_lastname'];
-  $user_role  = $_POST['user_role'];
-  $username         = $_POST['username'];
-  $user_email      = $_POST['user_email'];
+  $user_lastname         = $_POST['user_lastname'];
+  $user_role             = $_POST['user_role'];
+  $username              = $_POST['username'];
+  $user_email            = $_POST['user_email'];
   $user_password         = $_POST['user_password'];
  
   // INSERT INTO TABLE
-  $query = "UPDATE posts SET user_firstname = '{$user_firstname}', user_lastname = '{$user_lastname}', 
+  $query = "UPDATE users SET user_firstname = '{$user_firstname}', user_lastname = '{$user_lastname}', 
   user_role = '{$user_role}', username = '{$username}', user_email = '{$user_email}', 
   user_password = '{$user_password}' WHERE userId = {$the_user_id} ";
 
@@ -43,7 +42,10 @@ if(isset($_POST['edit_user'])){
   $edit_user_query = mysqli_query($connection, $query);
   
   // CONFIRM QUERY
-  //confirmQuery($edit_user_query); 
+  confirmQuery($edit_user_query);
+  
+  // display this
+  echo "<p class='success-button'>User Updated. <a href='users.php'>View Users</a></p>";
 
 }
 
