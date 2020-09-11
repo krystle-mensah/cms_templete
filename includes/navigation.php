@@ -32,23 +32,16 @@
 					}
 					?> 
 
-<!-- I only want the below link to show if the user is admin -->
-
-<?php
-
-
-// if( isset){
-
-// }
-
-?>
-
 					<li>
 						<a href="admin">Admin</a>
 					</li>
-<!-- what we wont to do is if where logged in and editing a post we wont to display an edit button -->
-					<?php
 
+					<li>
+						<a href="registration.php">Registration</a>
+					</li>
+
+					<?php
+					// if where logged in and editing a post we wont to display an edit button
 					// first we check if a user is set because only users enter into admin.
 					// where also checking there role because only admin user should be able to edit post i think.
 					if(isset($_SESSION['user_role'])) {

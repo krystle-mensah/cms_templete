@@ -57,6 +57,10 @@ if(isset($_POST['login'])){
 
   }
 
+  // password encrption
+
+	$password = crypt($password, $db_user_password);
+
   //once we have the row with the id we need to validate it with an if statement
 
   // 155. Validating User Query Front End

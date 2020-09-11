@@ -11,49 +11,87 @@ if( isset( $_POST['submit'] ) ){
 
 	// now we wont to get the values from the user
 
-	$username = $_POST['username'];
-	$email 	  = $_POST['email']; 
-	$password = $_POST['password'];
-	
-	// now we clean them
+	$user_firstname = $_POST['user_firstname'];
+	$user_lastname 	= $_POST['user_lastname'];
+	$username 			= $_POST['username'];
+	$email 	  			= $_POST['email']; 
+	$password 			= $_POST['password'];
 
-	$username = mysqli_real_escape_string($connection, $username);
-	$email 	  = mysqli_real_escape_string($connection, $email);
-	$password = mysqli_real_escape_string($connection, $password);
+	// check if field are empty
+
+	if( !empty( $user_firstname ) && !empty( $user_lastname ) && !empty( $username ) && !empty( $email ) && !empty( $password ) ){
+
+	// NOW CLEAN DATA
+
+	$user_firstname = mysqli_real_escape_string($connection, $user_firstname);
+	$user_lastname 	= mysqli_real_escape_string($connection, $user_lastname);
+	$username 			= mysqli_real_escape_string($connection, $username);
+	$email 	  			= mysqli_real_escape_string($connection, $email);
+	$password 			= mysqli_real_escape_string($connection, $password);
 
 	// TEST - By filling in fields and clicking submit.
 
-	// //echo $username = mysqli_real_escape_string($connection, $username); // OUTPUT - username is displayed
+	////echo $username = mysqli_real_escape_string($connection, $username); // OUTPUT - username is displayed
 
 	// query for password encrption
+
 	$query = "SELECT randSalt FROM users";
 
-	// then we send it in
+	// then we send the query in
+
 	$select_randsalt_query = mysqli_query($connection, $query);
 
 	// if query does not work
+
 	if(!$select_randsalt_query) {
 
-		// kill script and send a messages
+		// kill script and send a message
 		die("Query Failed" . mysqli_error($connection));
 
 	}
 
-	// create a while loop
+	
+	//we don't need to loop through the whole table to get its value out. We can just get the first value.
 
-	while($row = mysqli_fetch_array( $select_randsalt_query ) ){
+	// fetch colum randSalt and get is row values
 
+	$row = mysqli_fetch_array( $select_randsalt_query );
+
+	// then hold it here
+
+	$salt = $row['randSalt'];
+
+	// password encrption
+
+	$password = crypt($password, $salt);
+	
+	//now Query the database for these table and theres columns.
+
+	$query = "INSERT INTO users (username, user_email, user_firstname, user_lastname, user_password, user_role)";
+
+	$query .= "VALUES ('{$username}', '{$email}', '{$user_firstname}', '{$user_lastname}', '{$password}', 'subscriber')";
+
+	$register_user_query = mysqli_query($connection, $query);
+
+	if(!$register_user_query) {
+		die("QUERY FAILED " . mysqli_error($connection));
 	}
 
+	// messge for registion successful
 
+	$message = " Your registration has been submitted.";
 
-	
-	
+	} else {
 
-	
+		$message = " Fields cannot be empty ";
+	}//if empty
 
+} else {
 
-}
+	$message = " ";
+
+}//isset 
+
 
 
 ?>
@@ -72,6 +110,17 @@ if( isset( $_POST['submit'] ) ){
 						<div class="form-wrap">
 						<h1>Register</h1>
 							<form role="form" action="registration.php" method="post" id="login-form" autocomplete="off">
+								
+								<h6 class="text-align: center"><?php echo $message; ?></h6>
+
+								<div class="form-group">
+									<label for="firstname" class="sr-only">Firstname</label>
+									<input type="text" name="user_firstname" id="" class="form-control" placeholder="Enter first name">
+								</div>
+								<div class="form-group">
+									<label for="lastname" class="sr-only">Lastname</label>
+									<input type="text" name="user_lastname" id="" class="form-control" placeholder="Enter last name">
+								</div>
 								<div class="form-group">
 									<label for="username" class="sr-only">username</label>
 									<input type="text" name="username" id="username" class="form-control" placeholder="Enter Desired Username">

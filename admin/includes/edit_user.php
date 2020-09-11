@@ -33,6 +33,20 @@ if(isset($_POST['edit_user'])){
   $user_email            = $_POST['user_email'];
   $user_password         = $_POST['user_password'];
  
+  // <!-- we need to go into the database and pull the randsalt -->
+
+  $query = "SELECT randSalt FROM users";
+
+  $select_randsalt_query = mysqli_query($connection, $query);
+
+  if(!$select_randsalt_query) {
+    die('query failed' . mysqli_error($connection));
+  }
+
+  //then we go inside the database
+
+  
+  
   // INSERT INTO TABLE
   $query = "UPDATE users SET user_firstname = '{$user_firstname}', user_lastname = '{$user_lastname}', 
   user_role = '{$user_role}', username = '{$username}', user_email = '{$user_email}', 
@@ -109,3 +123,4 @@ if(isset($_POST['edit_user'])){
   </div>
 
 </form>
+
