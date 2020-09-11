@@ -156,7 +156,8 @@ if( isset( $_POST['checkBoxArray'] ) ) {
     echo "<td><a href='posts.php?source=edit_post&p_id={$post_id}'>Edit</a></td>";
     
     //sending post page and delete key equal to the post id
-    echo "<td><a href='posts.php?delete={$post_id}'>Delete</a></td>";
+    // 203. PHP and Javascript Confirm Before Action. so we wont to add a messge to confirm a deleted post 
+    echo "<td><a onClick=\"javascript: return confirm('Are you want to delete')\" href='posts.php?delete={$post_id}'>Delete</a></td>";
     echo "</tr>";
   }
 
