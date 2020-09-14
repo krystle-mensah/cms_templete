@@ -32,10 +32,10 @@ foreach($db as $key => $value){
 //assign variable to open a new connection to server with contants
 $connection = mysqli_connect(DB_HOST, DB_USER,DB_PASS,DB_NAME);
 
-// if connection is ture
-if($connection) {
-  // display this in the browser else do nothing. 
-  echo "We are connected";
-}
+// // if connection is ture
+// if($connection) {
+//   // display this in the browser else do nothing. 
+//   echo "We are connected";
+// }
 
 
