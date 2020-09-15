@@ -44,7 +44,38 @@ if( isset( $_POST['checkBoxArray'] ) ) {
 
       break;
 
-      
+      case 'clone':
+        // go into the database and search for all the posts where the id equal to the post value id.
+        $query = "SELECT * FROM posts WHERE post_id = '{$postValueId}' ";
+        $select_post_query = mysqli_query($connection, $query);
+
+            while ($row = mysqli_fetch_array($select_post_query)) {
+            $post_title         = $row['post_title'];
+            $post_category_id   = $row['post_category_id'];
+            $post_date          = $row['post_date']; 
+            $post_author        = $row['post_author'];
+            $post_status        = $row['post_status'];
+            $post_image         = $row['post_image'] ; 
+            $post_tags          = $row['post_tags']; 
+            $post_content       = $row['post_content'];
+            $post_comment_count       = $row['post_comment_count'];
+
+          }
+
+          $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date,post_image,post_content,post_tags,post_status, post_comment_count) ";
+          $query .= "VALUES({$post_category_id},'{$post_title}','{$post_author}',now(),'{$post_image}','{$post_content}','{$post_tags}', '{$post_status}', '{$post_comment_count}') "; 
+
+                $copy_query = mysqli_query($connection, $query);   
+
+              if(!$copy_query ) {
+
+                die("QUERY FAILED" . mysqli_error($connection));
+
+              }   
+
+
+
+      break;
 
     } //switch
 
@@ -99,8 +130,8 @@ if( isset( $_POST['checkBoxArray'] ) ) {
 
   <?php 
 
-  // select all from the posts table.
-  $query = "SELECT * FROM posts";
+  // select all from the posts table AND order by id
+  $query = "SELECT * FROM posts ORDER BY post_id DESC ";
 
   // mysqli_query function sends in the above query and connection. 
   $select_posts = mysqli_query($connection,$query);
