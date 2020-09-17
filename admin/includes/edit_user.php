@@ -32,47 +32,49 @@ if(isset($_POST['edit_user'])){
   $username              = $_POST['username'];
   $user_email            = $_POST['user_email'];
   $user_password         = $_POST['user_password'];
- 
-  // we need to make sure when we are editing a user that it is in crpted
-  
-  // so first we query the database for the colum from the table.
-  $query = "SELECT randSalt FROM users";
 
-  //then we perform a query against the database and send in the connection and query 
-  $select_randsalt_query = mysqli_query($connection, $query);
+  if(!empty($user_password)) { 
 
-  // if this is not set
-  if(!$select_randsalt_query) {
-    //display a message  and Return the last error description and the connection
-    die('query failed' . mysqli_error($connection));
-  }
+    $query_password = "SELECT user_password FROM users WHERE userId =  $the_user_id";
+    $get_user_query = mysqli_query($connection, $query_password);
+    confirmQuery($get_user_query);
 
-  //then we go inside the database
+    $row = mysqli_fetch_array($get_user_query);
 
-  // fetch column from table and get the value 
-  $row = mysqli_fetch_array($select_randsalt_query);
-  // then save the colum value here
-  $salt =  $row['randSalt'];
-  // then enypted the user password with salt
-  $hashed_password = crypt($user_password, $salt);
+    $db_user_password = $row['user_password'];
 
-  
-  
-  // INSERT INTO TABLE
-  $query = "UPDATE users SET user_firstname = '{$user_firstname}', user_lastname = '{$user_lastname}', 
-  user_role = '{$user_role}', username = '{$username}', user_email = '{$user_email}', 
-  user_password = '{$hashed_password}' WHERE userId = {$the_user_id} ";
 
-  //SEND IT IN
-  $edit_user_query = mysqli_query($connection, $query);
-  
-  // CONFIRM QUERY
-  confirmQuery($edit_user_query);
-  
-  // display this
-  echo "<p class='success-button'>User Updated. <a href='users.php'>View Users</a></p>";
+    if($db_user_password != $user_password) {
+
+        $hashed_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12));
+
+    }
+
+    // INSERT INTO TABLE
+    $query = "UPDATE users SET user_firstname = '{$user_firstname}', user_lastname = '{$user_lastname}', 
+    user_role = '{$user_role}', username = '{$username}', user_email = '{$user_email}', 
+    user_password = '{$hashed_password}' WHERE userId = {$the_user_id} ";
+
+    //SEND IT IN
+    $edit_user_query = mysqli_query($connection, $query);
+    
+    // CONFIRM QUERY
+    confirmQuery($edit_user_query);
+    
+    // display this
+    echo "<p class='success-button'>User Updated. <a href='users.php'>View Users</a></p>";
+
+  } // if password emtpy
+
 
 }
+
+//If the user id is not present in the URL we redirect to the home page
+//else {
+
+  //header("Location: index.php");
+
+//} // if isset
 
 ?>
 
@@ -126,7 +128,7 @@ if(isset($_POST['edit_user'])){
 
   <div class="form-group">
     <label for="post_content">Password</label>
-    <input type="password" value="<?php echo $user_password; ?>" class="form-control" name="user_password">
+    <input autocomplete="off" type="password" class="form-control" name="user_password">
   </div>
 
   <div class="form-group">

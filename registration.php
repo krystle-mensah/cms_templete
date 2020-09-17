@@ -29,41 +29,7 @@ if( isset( $_POST['submit'] ) ){
 	$email 	  			= mysqli_real_escape_string($connection, $email);
 	$password 			= mysqli_real_escape_string($connection, $password);
 
-	// TEST - By filling in fields and clicking submit.
-
-	////echo $username = mysqli_real_escape_string($connection, $username); // OUTPUT - username is displayed
-
-	// query for password encrption
-
-	$query = "SELECT randSalt FROM users";
-
-	// then we send the query in
-
-	$select_randsalt_query = mysqli_query($connection, $query);
-
-	// if query does not work
-
-	if(!$select_randsalt_query) {
-
-		// kill script and send a message
-		die("Query Failed" . mysqli_error($connection));
-
-	}
-
-	
-	//we don't need to loop through the whole table to get its value out. We can just get the first value.
-
-	// fetch colum randSalt and get is row values
-
-	$row = mysqli_fetch_array( $select_randsalt_query );
-
-	// then hold it here
-
-	$salt = $row['randSalt'];
-
-	// password encrption
-
-	$password = crypt($password, $salt);
+	$password = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
 	
 	//now Query the database for these table and theres columns.
 
