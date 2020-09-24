@@ -7,18 +7,18 @@ if(isset($_POST['create_post'])){
   //echo $_POST['title'];
 
   // assign all values from form to variables
-  $post_title        = $_POST['title'];
-  $post_author        = $_POST['author'];
-  $post_category_id  = $_POST['post_category_id'];
-  $post_status       = $_POST['post_status'];
+  $post_title        = escape($_POST['title']);
+  $post_author       = escape($_POST['author']);
+  $post_category_id  = escape($_POST['post_category_id']);
+  $post_status       = escape($_POST['post_status']);
 
-  $post_image        = $_FILES['image']['name'];
-  $post_image_temp   = $_FILES['image']['tmp_name'];
+  $post_image        = escape($_FILES['image']['name']);
+            $post_image_temp   = escape($_FILES['image']['tmp_name']);
 
 
-  $post_tags         = $_POST['post_tags'];
-  $post_content      = $_POST['post_content'];
-  $post_date         = date('d-m-y');
+            $post_tags         = escape($_POST['post_tags']);
+            $post_content      = escape($_POST['post_content']);
+            $post_date         = escape(date('d-m-y'));
   // here when we create a post we are hard coding the value
   $post_comment_count = 4;
 
