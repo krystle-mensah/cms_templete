@@ -5,7 +5,7 @@ $(document).ready(function () {
 	ClassicEditor
 	.create(document.querySelector('#body'))
 	.catch(error => {
-		console.error(error);
+		//console.error(error);
 	});
 
 	
@@ -35,5 +35,14 @@ $(document).ready(function () {
 		}// if statment
 
 	});// event
+
+	var div_box = "<div id='load-screen'><div id='loading'></div>";
+
+	$("body").prepend(div_box);
+	$('#load-screen').delay(700).fadeOut(600, function(){
+		$(this).remove();
+	});
+
+
 
 });//document
