@@ -93,17 +93,24 @@ if(isset($_GET['change_to_sub'])){
 //  if pressed
 if(isset($_GET['delete'])){
 
-//  then convert that into the $var
-$the_user_id = $_GET['delete']; 
+  // we have to valuedate it
+  if(isset($_SESSION['user_role'])){
+    if($_SESSION['user_role'] == 'admin') {
+      //  then convert that into the $var
+      $the_user_id = mysqli_real_escape_string($connection, $_GET['delete']); 
 
-// query the database for {$the_comment_id}
-$query = "DELETE FROM users WHERE userId = {$the_user_id} ";
+      // query the database for {$the_comment_id}
+      $query = "DELETE FROM users WHERE userId = {$the_user_id} ";
 
-// function performs a query against a database to send in. 
-$delete_user_query = mysqli_query($connection,$query);
+      // function performs a query against a database to send in. 
+      $delete_user_query = mysqli_query($connection,$query);
 
-// then refresh the page everytime it is submited
-header("Location: users.php");
+      // then refresh the page everytime it is submited
+      header("Location: users.php");
+
+    }
+
+  }
 
 }
 
