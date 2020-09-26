@@ -1,9 +1,11 @@
+<!-- outwould buffering -->
+<?php ob_start(); ?>
+
 <?php session_start(); ?>
 <?php include "./function.php"; ?>
 <?php include "../includes/db.php"; ?>
 
-<!-- outwould buffering -->
-<?php ob_start(); ?>
+
 
 <?php
 
