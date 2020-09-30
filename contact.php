@@ -1,18 +1,20 @@
 <?php  include "includes/db.php"; ?>
 <?php  include "includes/header.php"; ?>
 
+<pre>
+This is not working add the one from profolio.
+</pre>
+
 <!-- Check if the from is working -->
 <?php if( isset( $_POST['submit'] ) ):
-  // Test 
+  // Test TEST - submit
   ////it by pressing the submit button and seeing the output
 	////echo 'submitted'; //output - 
-  //
-  $to 	 = 'krystle.mensah@gmail.com';
+  $to 	   = 'krystle.mensah@gmail.com';
   // save from form this values
   $subject = $_POST['subject'];
   $body 	 = $_POST['body']; 
 endif; ?>
-
 <!-- Navigation -->
 <?php  include "includes/navigation.php"; ?>
 
